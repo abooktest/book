@@ -227,13 +227,13 @@ allowStaticMemberImports|	static 클리스의 star import를 허용할지 여부
 
 1. Android Studio에서  File>Settings>Plugins 탭에서 'Browser Repositories'버튼을 선택합니다.
 1. checkstyle로 검색하여 'checkstyle-IDEA` 플로그인을 선택하여 설치합니다.
+![checkstyle-plugin](image/checkstyle-plugin.PNG)
 
-MDEP > checkstyle > checkstyle-plugin.PNG
 1. 설치후 Android Studio를 닫고 다시 실행합니다.
 1. 다시 File> Settings> Editor> code style> Java 를 선택합니다.
 1. scheme> 설정> import scheme> checkstyle configuration 에서 checkstyle설정 파일을 선택합니다.
+![checkstyle-import](image/checkstyle-import.PNG)
 
-MDEP > checkstyle > checkstyle-import.PNG
 1. 완료.
 
 # 특정 파일 제외하기
