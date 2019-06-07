@@ -109,7 +109,7 @@ public class SimpleCalculatorTest {
 위의 테스트케이스를 보면 sum은 테스트가 되었지만 multiply는 테스트 되지 않았습니다. 아래 커버리지 리포트에 0%라고 정확히 명시되어 있습니다.
 또한 mathOperation 테스트 케이스를 보면 3가지 경우가 있습니다. SUM으로 합을 구하는 경우, MULTIPLY로 곱을 구하는 경우 그외의 경우 이렇게 3가지 입니다. 3가지 중에서 테스트가 된 것은 첫번째 경우만 테스트가 되었습니다. 그래서 
 
-![coverage report] (image/coverage-report.png)
+![coverage report](image/coverage-report.png)
 
 # 커버리지 대상에서 제외하기
 # custom filter 구현기??
