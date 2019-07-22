@@ -7,10 +7,17 @@
 
 # Docker Image & Docker Container
 Docker Image는 소프트웨어, 라이브러리, 환경 등을 설치한 후 배포가능한 패키지를 말하며, 
-Docker Container는 Docker Image를 실행 한 형태입니다.
+Docker Container는 Docker Image를 실행 한 형태입니다. 즉 Image는 실행 할 수 있는 패키지로 볼 수 있고, Container는 실행된 각각의 프로세스로 볼 수 있습니다. 또한 하나의 Image는 여러개의 Container로 실행이 가능합니다.
+
+# Docker Hub
+생성한 Docker Image는 Docker Hub라는 중앙저장소에 쉽게 올릴 수 있고(push), 필요한 Image는 받을 수 있습니다. (pull)
+또한 받은 Image를 수정하여 또다른 Image를 생성 할 수 있으며, 이 때 생성된 Image는 Base Image 에서 변경된 부분만을 저장하게 됩니다.
+
 
 -------------
-내용 추가 중
+내용 추가 중 Docker layer
+https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612
+
 -------------
 
 
