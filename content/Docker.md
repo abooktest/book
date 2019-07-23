@@ -10,8 +10,9 @@ Docker Image는 소프트웨어, 라이브러리, 환경 등을 설치한 후 �
 Docker Container는 Docker Image를 실행 한 형태입니다. 즉 Image는 실행 할 수 있는 패키지로 볼 수 있고, Container는 실행된 각각의 프로세스로 볼 수 있습니다. 또한 하나의 Image는 여러개의 Container로 실행이 가능합니다.
 
 # Docker Hub
-생성한 Docker Image는 Docker Hub라는 중앙저장소에 쉽게 올릴 수 있고(push), 필요한 Image는 받을 수 있습니다. (pull)
-또한 받은 Image를 수정하여 또다른 Image를 생성 할 수 있으며, 이 때 생성된 Image는 Base Image 에서 변경된 부분만을 저장하게 됩니다.
+Docker Image들의 저장소인 Docker Hub는 현재 많은 사람들에 의해 Image가 제작 및 공유되고 있습니다. ubuntu, gradle 등의 SW 들 또한 등록되어 있고, 이러한 Image들은 Official Image로 표기하고 있습니다. 그리고 Official Image들은 Docker 환경에 맞게 재구성하여 경량화(Ubuntu의 경우 약 30MB) 되어 있습니다. 
+개인 사용자 또한  용도에 맞게 선택하여 Customizing 이 가능하며, Docker Hub의 중앙저장소에 쉽게 올릴 수 있고(push), 또 필요한 Image를 받을 수 있습니다. (pull) 또한 받은 Image를 수정하여 또 다른 Image를 생성 할 수 있으며, 이 때 생성된 Image는 Base Image 에서 변경된 부분만을 저장하게 됩니다.
+
 
 
 -------------
@@ -23,3 +24,53 @@ https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612
 
 
 # Docker 설치
+
+
+
+# Android Build 용 Docker Image 제작
+Android build CI 구성을 위한 Docker Image 작성
+지금부터는 이미 존재하는 Ubuntu의 Image를 기반으로 Android 빌드 환경의 Docker Image를 제작해 보겠습니다.
+
+
+```
+FROM ubuntu:latest
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+ENV http_proxy <proxy:port>
+ENV https_proxy <proxy:port>
+
+RUN chmod g+rx,o+rx /
+
+RUN apk update && \
+apk add unzip && \
+apk add wget && \
+apk add vim && \
+apk add curl && \
+apk add --no-cache openjdk8
+
+RUN apk add --no-cache so:libnss3.so
+
+ADD https://services.gradle.org/distributions/gradle-5.3-all.zip /opt/
+RUN unzip /opt/gradle-5.3-all.zip -d /opt/gradle
+ENV GRADLE_HOME /opt/gradle/gradle-5.3
+ENV PATH $GRADLE_HOME/bin:$PATH
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+
+RUN chmod +x /opt/gradle/gradle-5.3/bin/gradle
+
+RUN apk add python3
+RUN apk add git
+
+ARG ANDROID_SDK_VERSION=4333796
+ENV ANDROID_HOME /opt/android-sdk
+RUN mkdir -p ${ANDROID_HOME} && cd ${ANDROID_HOME}
+ADD https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip /opt/android-sdk/
+RUN unzip /opt/android-sdk/sdk-tools-linux-4333796.zip -d /opt/android-sdk
+RUN rm /opt/android-sdk/sdk-tools-linux-4333796.zip
+
+ENV PATH $ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --proxy=http --proxy_host=<host> --proxy_port=<port> --licenses || true
+```
