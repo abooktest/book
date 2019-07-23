@@ -32,7 +32,6 @@ Android build CI 구성을 위한 Docker Image 작성
 지금부터는 이미 존재하는 Ubuntu의 Image를 기반으로 Android 빌드 환경의 Docker Image를 제작해 보겠습니다.
 
 
-DockerFile
 ```
 FROM ubuntu:latest
 
