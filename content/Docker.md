@@ -26,11 +26,14 @@ https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612
 # Docker 설치
 
 
+
+# Android Build 용 Docker Image 제작
 Android build CI 구성을 위한 Docker Image 작성
 지금부터는 이미 존재하는 Ubuntu의 Image를 기반으로 Android 빌드 환경의 Docker Image를 제작해 보겠습니다.
 
-DockerFile
 
+DockerFile
+```
 FROM ubuntu:latest
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
@@ -71,3 +74,4 @@ RUN rm /opt/android-sdk/sdk-tools-linux-4333796.zip
 ENV PATH $ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --proxy=http --proxy_host=<host> --proxy_port=<port> --licenses || true
+```
