@@ -24,3 +24,50 @@ https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612
 
 
 # Docker 설치
+
+
+Android build CI 구성을 위한 Docker Image 작성
+지금부터는 이미 존재하는 Ubuntu의 Image를 기반으로 Android 빌드 환경의 Docker Image를 제작해 보겠습니다.
+
+DockerFile
+
+FROM ubuntu:latest
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+ENV http_proxy <proxy:port>
+ENV https_proxy <proxy:port>
+
+RUN chmod g+rx,o+rx /
+
+RUN apk update && \
+apk add unzip && \
+apk add wget && \
+apk add vim && \
+apk add curl && \
+apk add --no-cache openjdk8
+
+RUN apk add --no-cache so:libnss3.so
+
+ADD https://services.gradle.org/distributions/gradle-5.3-all.zip /opt/
+RUN unzip /opt/gradle-5.3-all.zip -d /opt/gradle
+ENV GRADLE_HOME /opt/gradle/gradle-5.3
+ENV PATH $GRADLE_HOME/bin:$PATH
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+
+RUN chmod +x /opt/gradle/gradle-5.3/bin/gradle
+
+RUN apk add python3
+RUN apk add git
+
+ARG ANDROID_SDK_VERSION=4333796
+ENV ANDROID_HOME /opt/android-sdk
+RUN mkdir -p ${ANDROID_HOME} && cd ${ANDROID_HOME}
+ADD https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip /opt/android-sdk/
+RUN unzip /opt/android-sdk/sdk-tools-linux-4333796.zip -d /opt/android-sdk
+RUN rm /opt/android-sdk/sdk-tools-linux-4333796.zip
+
+ENV PATH $ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --proxy=http --proxy_host=<host> --proxy_port=<port> --licenses || true
