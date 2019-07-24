@@ -42,3 +42,40 @@ class OnDeviceTest {
 
 ### Gradle
 #### build.gradle 수정
+#### Test class에 Annotation 추가(RobolectricTestRunner)
+
+# 기본 예제
+
+# Shadow
+#### Shadowing 생성자
+#### Shadow 클래스
+#### Shadowing 메소드
+
+# Configuration
+#### sdk, minSdk, maxSdk properties
+- SDK, Resources, Native Method에 대한 Emulation이 가능
+#### manifest, resource dir, asset dir 
+#### res qualifier
+#### system properties
+#### qualifiers
+#### @Config Annotation
+#### robolectic.properties File
+#### Global Configuration
+- final static 값도 변경 가능 - Build.VERSION 클래스 정보를 수정가능
+#### Device Configuration
+- http://robolectric.org/device-configuration/  
+
+# Lifecycle
+#### Activity
+##### start(), pause(), resume(), stop(), destroy()  
+##### save(), restore()
+##### visible state
+
+# Add-on
+- http://robolectric.org/using-add-on-modules/  
+
+# APIDocs
+- http://robolectric.org/javadoc/latest/
+
+# Best Practice
+- http://robolectric.org/best-practices/
