@@ -38,7 +38,7 @@ class OnDeviceTest {
 
 # 설정
  
- ~~ ### Bazel ~~
+~~### Bazel~~
 
 ### Gradle
 #### build.gradle 수정
