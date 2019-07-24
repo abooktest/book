@@ -10,7 +10,7 @@ Robolectric는 Android 개발에 있어 TDD를 쉽게 하도록 도와주는 테
 
 
 #### A Robolectric 3.x style test:
-```java
+```kotlin
 @RunWith(RobolectricTestRunner::class)
 class RobolectricTest {
   @Test fun clickingOnTitle_shouldLaunchEditAction() {
@@ -23,7 +23,7 @@ class RobolectricTest {
 ```
 
 #### Robolectric 4.x/instrumentation test:
-```java
+```kotlin
 @RunWith(AndroidJUnit4::class)
 class OnDeviceTest {
   @get:Rule val rule = ActivityTestRule(NoteListActivity::class.java)
