@@ -36,7 +36,7 @@ class OnDeviceTest {
 ```
 위와같이 Robolectric는 instrumentation test의 많은 이디엄들을 지원하고 있고 향후 릴리즈에서는 `androidx.test`에 대한 지원이 더욱 더 확대될 뿐만아니라 Robolectric-originated testing paradigms이 전통적인 instrumentation test에 도입될 예정입니다.
 
-
+# 설정
 ~~### Bazel~~
 ~~Bazel 개발 환경을 설명해야 할까??~~
 
@@ -71,7 +71,7 @@ public class SandwichTest {
 ```
 
 # 기본 예제
-애플리케이션 환영 페이지 layout을 생성합니다. 
+애플리케이션 메인 페이지 layout을 생성합니다. 
 ```xml
 <!--xml version="1.0" encoding="utf-8"?-->
 <linearlayout android:layout_height="match_parent" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"> 
