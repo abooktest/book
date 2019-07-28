@@ -112,6 +112,10 @@ public class WelcomeActivityTest {
     }
 }
 ```
+
+아래 링크에서 다양한 안드로이드 테스팅 샘플 코드를 찾아볼 수 있습니다.
+https://github.com/googlesamples/android-testing
+
 # Shadow
 #### Shadowing 생성자
 #### Shadow 클래스
