@@ -11,11 +11,11 @@ Docker Container는 Docker Image를 실행 한 형태입니다. 즉 Image는 실
 
 
 
--------------
+-----------------------
 내용 추가 중 Docker layer
 https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612
 
--------------
+-------------------------
 
 
 # Docker Hub
@@ -24,6 +24,9 @@ Docker Image들의 저장소인 Docker Hub는 현재 많은 사람들에 의해 
 
 
 # Docker 설치
+>
+>설치 Test 후 추가 예정
+>
 
 
 # Docker Image 내려받기
@@ -49,17 +52,17 @@ Docker cp <외부 경로> <Container ID:내부경로>
 앞서 내려받은 Ubuntu Container에 
 
 
-# Docker Hub Login
---------------------------
-Linux 에서 테스트 후 추가 예정
--------------------------
+# Docker Hub Login 
+>
+> Linux 에서 테스트 후 추가 예정
+>
 
-# Docker Image Upload
+# Docker Image Upload 
 이번에는 앞에서 작업한 Docker Ubuntu Container를 Docker Hub로 업로드 해보도록 하겠습니다.
 ```Docker push <Container ID>```
------------------------------
-내용 수정중
------------------------------
+>
+> 내용 수정중
+>
 
 
 # Android Build 용 Docker Image 제작
