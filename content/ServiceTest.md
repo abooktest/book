@@ -4,7 +4,7 @@
 
 바인더를 확장하는 경우 해당 어플리케이션 전용 서비스임으로 일반 메소드 유닛테스트와 다르지 않습니다. messenger의 경우 세부적인 인터페이스를 가지지 않음으로 메시지를 주고 받는 방식에 대한 테스트를 알아보겠습니다.  AIDL(Android Interface Definition Language)의 경우 인터페이스가 정의되어 있음으로 각각의 메소드에 대한 테스트  방식에 대해 알아보겠습니다.
 
-각각의 방식에 대한 구현 방법은 아래 링크를 참조하시기 바랍니다.
+각각의 방식에 대한 구현 방법은 아래 링크를 참조하시기 바랍니다. <br>
 [Bound services overview](https://developer.android.com/guide/components/bound-services)
 
 
