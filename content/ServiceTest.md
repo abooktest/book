@@ -11,3 +11,6 @@
 ## 바인더
 ## 메신저
 ## AIDL
+
+
+![Service Lifecycle](https://developer.android.com/images/fundamentals/service_binding_tree_lifecycle.png)
