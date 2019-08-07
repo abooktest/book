@@ -27,7 +27,21 @@
   - 이 article은 Observer와 Observable을 테스트하기 위해서, TestSubscriber와 TestScheduler를 조합하는 방법에 관한 글이다. 이러한 관점에서 TestObserver는 어떤 것을 테스트하기에 적당한 것인지에 대해서 함께 고려하여 볼 필요가 있다. 
 
 1. [RxJava2 unit testing tips]
-  - 
+  - RxJava의 주요 component인 Observable을 사용하고 있는 module을 unit test하기 위해서 필요한 tip을 정리하고 있다. 
+  - Testing Emission
+    + test 대상 module이 rxjava의 Observable과 같은 emitter를 사용하고 있는 경우, 해당 module의 mocking object가 TestObserver를 반환하도록 하여 해당 module의 기능 테스트가 가능하도록 한다. 
+  - Testing Subscription
+    + Immediate Action
+      : 일반적으로 scheuler는 trampolin을 사용하도록 한다. tramplin은 single thread에서 모든 async동작을 처리하도록 하며, 이를 통해 predictable order로 연산이 수행되도록 한다. 
+    + Advanced Timing (delay, repeat, throttle, debounc)
+      : TestScheduler를 사용하고, 이를 통해 시간 흐름을 manual하게 조정하면서 테스트를 진행하도록 한다. 
+    + Scheduler Provider (dependency injection)
+      : scheduler를 정의할 수 있는 interface를 정의하고, 해당 interface를 통해 상황에 따라 필요한 scheduler를 assign하도록 한다. 
+  
+1. [유닛테스트 작성시 RxJava Sheduler 처리]
+  - 기본적인 내용은 trampolin scheduler를 이용하여, 순차적으로 실행하여 테스트 하는 것을 설명
+  - 부가적으로 Android Architecture Component내에서 RxJava Unit Test관련 테크닉을 사용하는 법에 대한 간략한 설명이 있음.
+    : 즉, InstantTaskExecutorRule을 이용하여, Android Architecture Component의 background executor를 원하는 scheduler로 바꾸는 방법에 대해서 설명. 
 
 1. RxJava 프로그래밍 (보라색 책)의 Chapter8 (테스팅 파트)
   - TestObserver에 대해서 파악하고, 세부적인 사항에 대해서 확인 필요. 
@@ -41,7 +55,7 @@
 [Unit Testing asynchronous RxJava code (in Kotlin)]: https://medium.com/@PaulinaSadowska/writing-unit-tests-on-asynchronous-events-with-rxjava-and-rxkotlin-1616a27f69aa
 [How to Test RxJava?]: https://www.baeldung.com/rxjava-testing
 [RxJava2 unit testing tips]: https://proandroiddev.com/rxjava-2-unit-testing-tips-207887d3f15c
-- https://bonoogi.postype.com/post/3514910
-- https://stackoverflow.com/questions/46549405/testing-asynchronous-rxjava-code-android
-
+[유닛테스트 작성시 RxJava Sheduler 처리]: https://bonoogi.postype.com/post/3514910
+- https://medium.com/@dbottillo/how-to-unit-test-your-rxjava-code-in-kotlin-d239364687c9
+- https://proandroiddev.com/how-to-unit-test-livedata-and-lifecycle-components-8a0af41c90d9
 
